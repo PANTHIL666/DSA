@@ -1,4 +1,5 @@
 public class mergeSort {
+    //time complexity n
     public static void conqure(int arr[], int si, int mid, int ei) {
         int merged[] = new int[ei - si + 1];
         int id1 = si;
@@ -29,6 +30,7 @@ public class mergeSort {
         }
     }
 
+    //time complexity logn;
     public static void divide(int arr[], int si, int ei) {
         if (si >= ei) {
             return;
@@ -50,3 +52,6 @@ public class mergeSort {
         }
     }
 }
+
+
+//total time complexity nlogn
