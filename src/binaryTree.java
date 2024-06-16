@@ -75,6 +75,13 @@ public class binaryTree {
         return 1 + size(root.left) + size(root.right);
     }
 
+    static int maximumValue(Node root) {
+        if (root == null) {
+              return Integer.MIN_VALUE;
+        }
+        return Math.max(root.data,Math.max(maximumValue(root.left), maximumValue(root.right)));
+    }
+
 
 
     public static void main(String[] args) {
@@ -88,6 +95,7 @@ public class binaryTree {
         System.out.println("height of tree is /n:"+height);
         int size = size(root);
         System.out.println("size of tree is /n:"+size);
+        System.out.println("maximum value is /n:"+maximumValue(root));
 
         // Optionally, close the scanner if you want
         // sc.close();
