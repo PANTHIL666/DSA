@@ -50,6 +50,7 @@ public class binaryTree {
         preorderTraversal(root.right);
     }
 
+
     static void postorderTraversal(Node root) {
         if (root == null) {
             return;
@@ -57,6 +58,21 @@ public class binaryTree {
         postorderTraversal(root.left);
         postorderTraversal(root.right);
         System.out.print(root.data + " ");
+    }
+    static int height(Node root) {
+        //maximum length in tree
+        if (root == null) {
+            return 0;
+        }
+        return 1 + Math.max(height(root.left), height(root.right));
+    }
+
+    static int size(Node root) {
+        //number off node in tree
+        if (root == null) {
+            return 0;
+        }
+        return 1 + size(root.left) + size(root.right);
     }
 
 
@@ -68,6 +84,10 @@ public class binaryTree {
         preorderTraversal(root);
         System.out.println("        ");
         postorderTraversal(root);
+        int height = height(root);
+        System.out.println("height of tree is /n:"+height);
+        int size = size(root);
+        System.out.println("size of tree is /n:"+size);
 
         // Optionally, close the scanner if you want
         // sc.close();
