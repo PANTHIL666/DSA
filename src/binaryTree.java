@@ -1,3 +1,5 @@
+import java.util.Queue;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class binaryTree {
@@ -82,6 +84,50 @@ public class binaryTree {
         return Math.max(root.data,Math.max(maximumValue(root.left), maximumValue(root.right)));
     }
 
+    //if i want to print element of level 3 then i pass level=3 in argument
+    //This code take time to print node which we want is bigoof(n^2)
+    //if we want to print all node than we have to wright only one simple for loop
+    /*for(i in height of tree){
+        levelorderRecursive(root,level)}*/
+    static int levelOrderRecursive(Node root, int level) {
+        if (root == null) {
+            return 0;
+        }
+        if(level == 1) {
+            System.out.print(root.data + " ");
+        }
+        levelOrderRecursive(root.left, level - 1);
+        levelOrderRecursive(root.right, level - 1);
+        return root.data;
+    }
+
+    //level order traversal using queue
+    //time complexity is bigoof(n)
+    //here we add null because when we complete one level then we want print new level at new line ..
+
+    static void levelorderTraversal(Node root) {
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        queue.add(null);
+        while (!queue.isEmpty()) {
+            Node current = queue.poll();
+            if(current != null) {
+                if(!queue.isEmpty()){
+                    return;
+                }
+                queue.add(null);
+                System.out.println("  ");
+            }
+            System.out.print(current.data + " ");
+            if (current.left != null) {
+                queue.add(current.left);
+            }
+            if (current.right != null) {
+                queue.add(current.right);
+            }
+        }
+    }
+
 
 
     public static void main(String[] args) {
@@ -96,7 +142,9 @@ public class binaryTree {
         int size = size(root);
         System.out.println("size of tree is /n:"+size);
         System.out.println("maximum value is /n:"+maximumValue(root));
-
+        System.out.println("level order traversal is /n:"+ levelOrderRecursive(root, 3));
+        System.out.println("Level order traversal is:");
+        levelorderTraversal(root);
         // Optionally, close the scanner if you want
         // sc.close();
     }
